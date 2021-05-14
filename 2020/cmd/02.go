@@ -56,7 +56,6 @@ func dayTwo() {
 
 	if err != nil {
 		log.Fatal(err)
-		return
 	}
 
 	defer file.Close()
@@ -70,7 +69,6 @@ func dayTwo() {
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
-		return
 	}
 
 	dayTwoPartOne(a)

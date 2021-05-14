@@ -67,7 +67,6 @@ func dayThree() {
 
 	if err != nil {
 		log.Fatal(err)
-		return
 	}
 
 	defer file.Close()
@@ -81,7 +80,6 @@ func dayThree() {
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
-		return
 	}
 
 	lineLen := len(a[0])

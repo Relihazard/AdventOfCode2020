@@ -174,7 +174,6 @@ func dayFour() {
 
 	if err != nil {
 		log.Fatal(err)
-		return
 	}
 
 	defer file.Close()
@@ -202,7 +201,6 @@ func dayFour() {
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
-		return
 	}
 
 	a = append(a, m)
