@@ -17,8 +17,14 @@ func dayTwoPartOne(a []string) {
 		limits := strings.Split(splits[0], "-")
 		lowerLimit, _ := strconv.ParseInt(limits[0], 10, 0)
 		upperLimit, _ := strconv.ParseInt(limits[1], 10, 0)
-		c := splits[1][:1]
-		count := strings.Count(line, c)
+		c := splits[1][0]
+		count := 0
+
+		for _, char := range splits[2] {
+			if rune(c) == char {
+				count++
+			}
+		}
 
 		if count >= int(lowerLimit) && count <= int(upperLimit) {
 			counter++
