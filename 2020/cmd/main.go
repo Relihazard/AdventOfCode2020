@@ -16,10 +16,11 @@ func main() {
 		daySeven,
 		dayEight,
 		dayNine,
+		dayTen,
 	}
 
 	dayPtr := flag.Int("d", 0, "The day to be executed")
-	flag.IntVar(dayPtr, "day", 0, "same as -d")
+	flag.IntVar(dayPtr, "day", 0, "Same as -d")
 
 	flag.Parse()
 
