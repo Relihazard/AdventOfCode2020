@@ -1,8 +1,7 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -18,14 +17,14 @@ func checkFields(m map[string]string, counter *int) {
 	}
 }
 
-func dayFourPartOne(a []map[string]string) {
+func dayFourPartOne(a []map[string]string) int {
 	var counter int
 
 	for _, m := range a {
 		checkFields(m, &counter)
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", counter)
+	return counter
 }
 
 func checkLimits(data string, limitMin int, limitMax int) bool {
@@ -150,7 +149,7 @@ func checkPid(m map[string]string) bool {
 	return true
 }
 
-func dayFourParTwo(a []map[string]string) {
+func dayFourParTwo(a []map[string]string) int {
 	var counter int
 
 	for _, m := range a {
@@ -164,13 +163,11 @@ func dayFourParTwo(a []map[string]string) {
 		}
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", counter)
+	return counter
 }
 
-func dayFour() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day four:")
-
-	file, err := os.Open("inputs/2020/04")
+func DayFour() (int, int) {
+	file, err := os.Open("data/inputs/twenty/04")
 
 	if err != nil {
 		log.Fatal(err)
@@ -205,6 +202,5 @@ func dayFour() {
 
 	a = append(a, m)
 
-	dayFourPartOne(a)
-	dayFourParTwo(a)
+	return dayFourPartOne(a), dayFourParTwo(a)
 }

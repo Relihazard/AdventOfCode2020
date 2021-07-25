@@ -1,13 +1,12 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
 
-func dayThreePartOne(a []string, lineLen int, limit int) {
+func dayThreePartOne(a []string, lineLen int, limit int) int {
 	var trees, i, j int
 
 	for {
@@ -24,10 +23,10 @@ func dayThreePartOne(a []string, lineLen int, limit int) {
 		}
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", trees)
+	return trees
 }
 
-func dayThreePartTwo(a []string, lineLen int, limit int) {
+func dayThreePartTwo(a []string, lineLen int, limit int) int {
 	slopes := [][]int{{1, 1}, {1, 3}, {1, 5}, {1, 7}, {2, 1}}
 	trees := make([]int, 5)
 
@@ -57,13 +56,11 @@ func dayThreePartTwo(a []string, lineLen int, limit int) {
 		total = total * value
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", total)
+	return total
 }
 
-func dayThree() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day three:")
-
-	file, err := os.Open("inputs/2020/03")
+func DayThree() (int, int) {
+	file, err := os.Open("data/inputs/twenty/03")
 
 	if err != nil {
 		log.Fatal(err)
@@ -85,6 +82,5 @@ func dayThree() {
 	lineLen := len(a[0])
 	limit := len(a)
 
-	dayThreePartOne(a, lineLen, limit)
-	dayThreePartTwo(a, lineLen, limit)
+	return dayThreePartOne(a, lineLen, limit), dayThreePartTwo(a, lineLen, limit)
 }

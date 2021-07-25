@@ -1,8 +1,7 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -65,10 +64,8 @@ func movePartTwo(ops []Op) int {
 	}
 }
 
-func dayEight() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day eight:")
-
-	file, err := os.Open("inputs/2020/08")
+func DayEight() (int, int) {
+	file, err := os.Open("data/inputs/twenty/08")
 
 	if err != nil {
 		log.Fatal(err)
@@ -104,7 +101,7 @@ func dayEight() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", move(ops))
+	moveCount := move(ops)
 
 	for i := range ops {
 		ops[i].visited = false
@@ -120,8 +117,9 @@ func dayEight() {
 		}
 
 		if acc := movePartTwo(opsCopy); acc != 0 {
-			fmt.Printf("\033[1;36m%d\033[0m\n", acc)
-			break
+			return moveCount, acc
 		}
 	}
+
+	return -1, -1
 }

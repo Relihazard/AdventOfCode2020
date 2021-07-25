@@ -1,8 +1,7 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
@@ -18,17 +17,17 @@ func newGroup() *Group {
 	return &g
 }
 
-func daySixPartOne(a []Group) {
+func daySixPartOne(a []Group) int {
 	result := 0
 
 	for _, group := range a {
 		result += len(group.questions)
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", result)
+	return result
 }
 
-func daySixPartTwo(a []Group) {
+func daySixPartTwo(a []Group) int {
 	result := 0
 
 	for _, group := range a {
@@ -39,13 +38,11 @@ func daySixPartTwo(a []Group) {
 		}
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", result)
+	return result
 }
 
-func daySix() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day six:")
-
-	file, err := os.Open("inputs/2020/06")
+func DaySix() (int, int) {
+	file, err := os.Open("data/inputs/twenty/06")
 
 	if err != nil {
 		log.Fatal(err)
@@ -77,6 +74,5 @@ func daySix() {
 
 	a = append(a, *g)
 
-	daySixPartOne(a)
-	daySixPartTwo(a)
+	return daySixPartOne(a), daySixPartTwo(a)
 }

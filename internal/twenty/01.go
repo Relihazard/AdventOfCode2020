@@ -1,43 +1,43 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
 )
 
-func dayOnePartOne(a []int) {
+func dayOnePartOne(a []int) int {
 	m := make(map[int]bool)
 	for _, value := range a {
 		if m[value] {
-			fmt.Printf("\033[1;36m%d\033[0m\n", value*(2020-value))
+			return value * (2020 - value)
 		}
 
 		m[2020-value] = true
 	}
+
+	return -1
 }
 
-func dayOnePartTwo(a []int) {
+func dayOnePartTwo(a []int) int {
 	m := make(map[int]bool)
 	for i, value := range a {
 		currSum := 2020 - value
 
 		for _, value2 := range a[i+1:] {
 			if m[currSum-value2] {
-				fmt.Printf("\033[1;36m%d\033[0m\n", value*value2*(currSum-value2))
-				return
+				return value * value2 * (currSum - value2)
 			}
 			m[value2] = true
 		}
 	}
+
+	return -1
 }
 
-func dayOne() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day one:")
-
-	file, err := os.Open("inputs/2020/01")
+func DayOne() (int, int) {
+	file, err := os.Open("data/inputs/twenty/01")
 
 	if err != nil {
 		log.Fatal(err)
@@ -52,7 +52,6 @@ func dayOne() {
 		i, err := strconv.Atoi(scanner.Text())
 		if err != nil {
 			log.Fatal(err)
-			return
 		}
 		if i != 2020 {
 			a = append(a, i)
@@ -63,6 +62,5 @@ func dayOne() {
 		log.Fatal(err)
 	}
 
-	dayOnePartOne(a)
-	dayOnePartTwo(a)
+	return dayOnePartOne(a), dayOnePartTwo(a)
 }

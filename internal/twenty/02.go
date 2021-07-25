@@ -1,15 +1,14 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
 )
 
-func dayTwoPartOne(a []string) {
+func dayTwoPartOne(a []string) int {
 	var counter int
 
 	for _, line := range a {
@@ -31,10 +30,10 @@ func dayTwoPartOne(a []string) {
 		}
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", counter)
+	return counter
 }
 
-func dayTwoPartTwo(a []string) {
+func dayTwoPartTwo(a []string) int {
 	var counter int
 
 	for _, line := range a {
@@ -52,13 +51,11 @@ func dayTwoPartTwo(a []string) {
 		}
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", counter)
+	return counter
 }
 
-func dayTwo() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day two:")
-
-	file, err := os.Open("inputs/2020/02")
+func DayTwo() (int, int) {
+	file, err := os.Open("data/inputs/twenty/02")
 
 	if err != nil {
 		log.Fatal(err)
@@ -77,6 +74,5 @@ func dayTwo() {
 		log.Fatal(err)
 	}
 
-	dayTwoPartOne(a)
-	dayTwoPartTwo(a)
+	return dayTwoPartOne(a), dayTwoPartTwo(a)
 }

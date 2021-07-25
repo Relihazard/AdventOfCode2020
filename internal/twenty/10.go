@@ -1,8 +1,7 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"sort"
@@ -20,10 +19,8 @@ func (list IntSlice) Has(i int64) bool {
 	return false
 }
 
-func dayTen() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day ten:")
-
-	file, err := os.Open("inputs/2020/10")
+func DayTen() (int, int) {
+	file, err := os.Open("data/inputs/twenty/10")
 
 	if err != nil {
 		log.Fatal(err)
@@ -50,7 +47,7 @@ func dayTen() {
 
 	arr = append(arr, arr[len(arr)-1]+3)
 
-	var ones, threes int
+	var ones, threes, partOne, partTwo int
 
 	for i := range arr {
 		if arr.Has(arr[i] + 1) {
@@ -60,7 +57,7 @@ func dayTen() {
 		}
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", ones*threes)
+	partOne = ones * threes
 
 	m := make(map[int64]int64)
 	m[0] = 1
@@ -81,5 +78,7 @@ func dayTen() {
 		one, two, three = 0, 0, 0
 	}
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", m[arr[len(arr)-1]])
+	partTwo = int(m[arr[len(arr)-1]])
+
+	return partOne, partTwo
 }

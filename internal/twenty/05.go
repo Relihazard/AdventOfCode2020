@@ -1,8 +1,7 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"sort"
@@ -39,24 +38,21 @@ func dayFivePartOne(a []string) []int {
 	}
 
 	sort.Ints(list)
-	fmt.Printf("\033[1;36m%d\033[0m\n", list[len(list)-1])
 
 	return list
 }
 
-func dayFivePartTwo(list []int) {
+func dayFivePartTwo(list []int) int {
 	for i, value := range list {
 		if i > 0 && list[i-1]+1 != value {
-			fmt.Printf("\033[1;36m%d\033[0m\n", value-1)
-			return
+			return value - 1
 		}
 	}
+	return -1
 }
 
-func dayFive() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day five:")
-
-	file, err := os.Open("inputs/2020/05")
+func DayFive() (int, int) {
+	file, err := os.Open("data/inputs/twenty/05")
 
 	if err != nil {
 		log.Fatal(err)
@@ -79,5 +75,5 @@ func dayFive() {
 	}
 
 	list := dayFivePartOne(a)
-	dayFivePartTwo(list)
+	return list[len(list)-1], dayFivePartTwo(list)
 }

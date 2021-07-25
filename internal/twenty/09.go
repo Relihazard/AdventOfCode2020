@@ -1,15 +1,12 @@
-package main
+package twenty
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"sort"
 	"strconv"
 )
-
-const Preamble = 25
 
 func checkNumber(arr []int64, number int64) bool {
 	for i := range arr {
@@ -33,10 +30,8 @@ func arraySum(arr []int64) int64 {
 	return sum
 }
 
-func dayNine() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day nine:")
-
-	file, err := os.Open("inputs/2020/09")
+func DayNine() (int, int) {
+	file, err := os.Open("data/inputs/twenty/09")
 
 	if err != nil {
 		log.Fatal(err)
@@ -58,13 +53,22 @@ func dayNine() {
 		log.Fatal(err)
 	}
 
-	arr := data[0:Preamble]
+	var preamble int
+
+	if len(data) < 25 {
+		preamble = 5
+	} else {
+		preamble = 25
+	}
+
+	arr := data[0:preamble]
 
 	var limit int64
+	var partOne, partTwo int
 
-	for _, val := range data[25:] {
+	for _, val := range data[preamble:] {
 		if !checkNumber(arr, val) {
-			fmt.Printf("\033[1;36m%d\033[0m\n", val)
+			partOne = int(val)
 			limit = val
 			break
 		}
@@ -83,11 +87,13 @@ func dayNine() {
 
 			if sum == limit {
 				sort.Slice(arr, func(i, j int) bool { return arr[i] < arr[j] })
-				fmt.Printf("\033[1;36m%d\033[0m\n", arr[0]+arr[len(arr)-1])
+				partTwo = int(arr[0] + arr[len(arr)-1])
 			} else if sum > limit {
 				arr = nil
 				break
 			}
 		}
 	}
+
+	return partOne, partTwo
 }

@@ -1,4 +1,4 @@
-package main
+package twenty
 
 import (
 	"bufio"
@@ -22,12 +22,12 @@ func (r *Ruleset) findBagsContainingColor(name string, list *map[string]bool) {
 	}
 }
 
-func daySevenPartOne(ruleset Ruleset) {
+func daySevenPartOne(ruleset Ruleset) int {
 	list := make(map[string]bool)
 
 	ruleset.findBagsContainingColor("shiny gold", &list)
 
-	fmt.Printf("\033[1;36m%d\033[0m\n", len(list))
+	return len(list)
 }
 
 func (r *Ruleset) countBags(name string) int {
@@ -43,14 +43,12 @@ func (r *Ruleset) countBags(name string) int {
 	return total
 }
 
-func daySevenPartTwo(ruleset Ruleset) {
-	fmt.Printf("\033[1;36m%d\033[0m\n", ruleset.countBags("shiny gold"))
+func daySevenPartTwo(ruleset Ruleset) int {
+	return ruleset.countBags("shiny gold")
 }
 
-func daySeven() {
-	fmt.Printf("\033[1;34m%s\033[0m\n", "Day seven:")
-
-	file, err := os.Open("inputs/2020/07")
+func DaySeven() (int, int) {
+	file, err := os.Open("data/inputs/twenty/07")
 
 	if err != nil {
 		log.Fatal(err)
@@ -85,6 +83,5 @@ func daySeven() {
 		log.Fatal(err)
 	}
 
-	daySevenPartOne(ruleset)
-	daySevenPartTwo(ruleset)
+	return daySevenPartOne(ruleset), daySevenPartTwo(ruleset)
 }
